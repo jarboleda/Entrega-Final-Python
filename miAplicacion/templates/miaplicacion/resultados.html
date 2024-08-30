@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    {% extends "miAplicacion/index.html" %}
+    {% load static %}
+    {% block bloqueBusqueda %}
+
+    <div class="container px-4">
+        <div class="row gx-4 justify-content-center">
+            <div class="col-lg-10">
+                <div class="card">
+                    {% if not datos %}
+                    <div class="card-header">
+                        <h3 class="text-center bottom-line">No se encontró el código: {{ codigo }}</h3>
+                    </div>
+                    {% else %}
+                    <div class="card-header">
+                        <h3 class="text-center bottom-line">Se encontró el código: {{ codigo }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Código</th>
+                                <th scope="col">Nombres</th>
+                                <th scope="col">Idioma</th>
+                                
+                                {% if tipo == '2' %}
+                                    <th scope="col">Email</th>
+                                {% endif %}
+
+                                <th scope="col">Estado</th>
+                                <th scope="col">Creacion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for dato in datos %}
+                                    <tr>
+                                        <th scope="row">{{ dato.id }}</th>
+                                        <td>{{ dato.codigo }}</td>
+
+                                        {% if tipo == '1' %}
+                                            <td>{{ dato.nombre }}</td>
+                                        {% else %}
+                                            <td>{{ dato.nombres }}</td>
+                                        {% endif %}
+
+                                        <td>{{ dato.idioma }}</td>
+
+                                        {% if tipo == '2' %}
+                                            <td>{{ dato.email }}</td>
+                                        {% endif %}
+    
+                                        <td>{{ dato.estado }}</td>
+                                        <td>{{ dato.creacion }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% endblock %}
+
+</body>
+</html>

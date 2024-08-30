@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+</head>
+<body>
+    
+    {% extends "miAplicacion/index.html" %}
+    {% load static %}
+    {% block bloqueUsuarios %}
+
+    <div class="container px-4">
+        <div class="row gx-4 justify-content-center">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Registro de Usuarios</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/miAplicacion/usuariosForm/" method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="grupo" class="form-label">Nombre y Apellidos:</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="idioma" class="form-label">Idioma:</label>
+                                <input type="text" class="form-control" id="idioma" name="idioma" required>
+                            </div>                                
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <a type="button" class="btn btn-secondary" href="{% url 'usuariosList' %}">Cancelar</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
+    
+</body>
+</html>

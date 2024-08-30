@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Scrolling Nav - Start Bootstrap Template</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'miaplicacion/assets/favicon.ico' %}" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'miaplicacion/css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container px-4">
+                <a class="navbar-brand" href="#page-top">Tercera Pre-Entrega</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'gruposList' %}#grupos">Grupos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'supervisoresList' %}#supervisores">Supervisores</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'usuariosList' %}#usuarios">Usuarios</a></li>
+                    </ul>
+
+                    <form action="/miAplicacion/buscar/" method="GET">
+                        {% csrf_token %}
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-4">
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm" name="tipo" id="tipo">
+                                        <option selected>Seleccione..</option>
+                                        <option value="1">Grupos</option>
+                                        <option value="2">Supervisores</option>
+                                        <option value="3">Usuarios</option>
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control form-control-sm" type="search" placeholder="Buscar.." name="codigo" id="codigo">
+                                </div>
+                                <div class="col-2">
+                                    <input type="submit" class="btn btn-sm btn-primary" value="Buscar Resultados">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-primary bg-gradient text-white" id="about">
+            <div class="container px-4 text-center">
+                <h1 class="fw-bolder">Bienvenido a la tercera pre-entrega de Javier Arboleda</h1>
+                <p class="lead">Esto es una plantilla funcional de un sistema de administración de usuarios</p>
+                <p class="lead">En ésta página se pueden visualizar datos registrados y tiene formularios para el registro de información de Grupos, Supervisores y Usuarios.</p>
+            </div>
+        </header>
+
+        {% block bloqueBusqueda %}
+        {% endblock %}
+
+        {% block bloqueGrupos %}
+        {% endblock %}
+
+        {% block bloqueSupervisores %}
+        {% endblock %}
+
+        {% block bloqueUsuarios %}
+        {% endblock %}
+
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'miaplicacion/js/scripts.js' %}"></script>
+    </body>
+</html>
