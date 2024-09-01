@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupos (clases)</title>
+</head>
+<body>
+
+    {% extends "miAplicacion/index.html" %}
+    {% load static %}
+    {% block bloqueGrupos %}
+
+    <div class="container px-4">
+        <div class="row gx-4 justify-content-center">
+            <div class="col-lg-10">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center bottom-line">Grupos Registrados</h3>
+                        <a type="button" class="btn btn-primary" href="{% url 'gruposForm' %}">Agregar Grupo</a>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Código</th>
+                                    <th scope="col">Nombres</th>
+                                    <th scope="col">Idioma</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Creacion</th>
+                                    <th scope="col">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for grupo in object_list %}
+                                    <tr>
+                                        <th scope="row">{{ grupo.id }}</th>
+                                        <td>{{ grupo.codigo }}</td>
+                                        <td>{{ grupo.nombre }}</td>
+                                        <td>{{ grupo.idioma }}</td>
+                                        <td>{{ grupo.estado }}</td>
+                                        <td>{{ grupo.creacion }}</td>
+                                        <td>
+                                            <a type="button" class="btn btn-sm btn-secondary" href="{% url 'gruposCborrar' grupo.id %}">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% endblock %}
+
+</body>
+</html>

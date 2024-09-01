@@ -7,10 +7,10 @@ from miAplicacion.forms import nuevoFormulario
 
 # Create your views here.
 
-def Inicio(req):
+def Inicio(request):
 # Vista de inicio
 
-    return render(req, "miaplicacion/index.html")
+    return render(request, "miaplicacion/index.html")
 
 
 def gruposList(req):

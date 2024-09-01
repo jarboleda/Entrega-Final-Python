@@ -15,15 +15,19 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
             <div class="container px-4">
-                <a class="navbar-brand" href="#page-top">Tercera Pre-Entrega</a>
+                <a class="navbar-brand" href="#page-top">Proyecto Final</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'gruposList' %}#grupos">Grupos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'supervisoresList' %}#supervisores">Supervisores</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'usuariosList' %}#usuarios">Usuarios</a></li>
                         <li class="nav-item"><a class="nav-link" href="../admin/">Admin</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
+<!--                        <li class="nav-item"><a class="nav-link" href="{% url 'gruposList' %}#grupos">Grupos</a></li>   -->
+                        <li class="nav-item"><a class="nav-link" href="{% url 'gruposClist' %}">Grupos-C</a></li>
+<!--                        <li class="nav-item"><a class="nav-link" href="{% url 'supervisoresList' %}#supervisores">Supervisores</a></li>     -->
+                        <li class="nav-item"><a class="nav-link" href="{% url 'supervisoresClist' %}">Supervisores-C</a></li>
+<!--                        <li class="nav-item"><a class="nav-link" href="{% url 'usuariosList' %}#usuarios">Usuarios</a></li>     -->
+                        <li class="nav-item"><a class="nav-link" href="{% url 'usuariosClist' %}">Usuarios-C</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'inicioSesion' %}">Iniciar Sesión</a></li>
                     </ul>
 
                     <form action="{% url 'buscar' %}" method="GET">
@@ -53,7 +57,7 @@
         <!-- Header-->
         <header class="bg-primary bg-gradient text-white" id="about">
             <div class="container px-4 text-center">
-                <h1 class="fw-bolder">Bienvenido a la tercera pre-entrega de Javier Arboleda</h1>
+                <h1 class="fw-bolder">Bienvenido al Proyecto Final de Javier Arboleda</h1>
                 <p class="lead">Esto es una plantilla funcional de un sistema de administración de usuarios</p>
                 <p class="lead">En ésta página se pueden visualizar datos registrados y tiene formularios para el registro de información de Grupos, Supervisores y Usuarios.</p>
             </div>
