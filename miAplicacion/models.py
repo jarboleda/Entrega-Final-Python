@@ -33,7 +33,7 @@ class Supervisores(models.Model):
     creacion = models.DateField()
 
     def __str__(self):
-        return f"Código: {self.codigo} - Nombres: {self.nombres} - Idioma: {self.idioma} - Email: {self.email} - Grupo: {self.grupo} - Estado: {self.estado} - Creado: {self.creacion}"
+        return f"Código: {self.codigo} - Nombres: {self.nombres} - Idioma: {self.idioma} - Email: {self.email} - Estado: {self.estado} - Creado: {self.creacion}"
 
 class Usuarios(models.Model):
     codigo = models.IntegerField(
@@ -49,6 +49,6 @@ class Usuarios(models.Model):
     creacion = models.DateField()
 
     def __str__(self):
-        return f"Código: {self.codigo} - Nombres: {self.nombres} - Idioma: {self.idioma} - Grupo: {self.grupo} - Estado: {self.estado} - Creado: {self.creacion}"
+        return f"Código: {self.codigo} - Nombres: {self.nombres} - Idioma: {self.idioma} - Estado: {self.estado} - Creado: {self.creacion}"
 
 

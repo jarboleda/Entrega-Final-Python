@@ -24,12 +24,13 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Código</th>
-                                <th scope="col">Nombres</th>
-                                <th scope="col">Idioma</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Creacion</th>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Código</th>
+                                    <th scope="col">Nombres</th>
+                                    <th scope="col">Idioma</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Creacion</th>
+                                    <th scope="col">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,6 +42,9 @@
                                         <td>{{ grupo.idioma }}</td>
                                         <td>{{ grupo.estado }}</td>
                                         <td>{{ grupo.creacion }}</td>
+                                        <td>
+                                            <a type="button" class="btn btn-sm btn-secondary" href="{% url 'gruposBorrar' grupo.codigo %}">Eliminar</a>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                             </tbody>

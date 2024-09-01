@@ -20,8 +20,8 @@ from miProyecto import views
 from miAplicacion.views import Inicio
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('miAplicacion/', include('miAplicacion.urls')),
+    path('admin/', admin.site.urls, name='Admin'),
+    path('', include('miAplicacion.urls')),
 
 ]
 

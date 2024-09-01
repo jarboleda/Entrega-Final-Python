@@ -34,6 +34,33 @@ def usuariosList(req):
     return render(req, "miaplicacion/usuarios.html", {'usuariosTodos': usuariosTodos})
 
 
+def gruposBorrar(req, codigoBorrar):
+# Vista del formulario para borrar un grupo
+
+    grupo = Grupos.objects.get(codigo = codigoBorrar)
+    grupo.delete()
+
+    return redirect('gruposList')
+
+
+def supervisoresBorrar(req, codigoBorrar):
+# Vista del formulario para borrar un grupo
+
+    grupo = Supervisores.objects.get(codigo = codigoBorrar)
+    grupo.delete()
+
+    return redirect('supervisoresList')
+
+def usuariosBorrar(req, codigoBorrar):
+# Vista del formulario para borrar un grupo
+
+    grupo = Usuarios.objects.get(codigo = codigoBorrar)
+    grupo.delete()
+
+    return redirect('usuariosList')
+
+
+
 def gruposForm(req):
 # Vista del formulario para agregar nuevos grupos
 
