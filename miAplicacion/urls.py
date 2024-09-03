@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 from .views_clases import *
 
-
 urlpatterns = [
     path('', views.Inicio, name='inicio'),
     path('gruposList/', views.gruposList, name='gruposList'),
@@ -18,19 +17,18 @@ urlpatterns = [
     path('usuariosBorrar/<codigoBorrar>/', views.usuariosBorrar, name='usuariosBorrar'),
 
     path('buscar/', views.buscar, name='buscar'),
-    path('inicioSesion/', inicioSesion, name='inicioSesion'),
-
-    path('nuevoFormulario/', views.nuevoForm, name='nuevoFormulario'),
 
 ]
 
 urls_vistas_clases = [
     path('gruposClist/', gruposClist.as_view(), name='gruposClist'),
-    path('gruposCborrar/<int:pk>', gruposCborrar.as_view(), name='gruposCborrar'),
+    path('gruposCborrar/<int:pk>/', gruposCborrar.as_view(), name='gruposCborrar'),
 
     path('supervisoresClist/', supervisoresClist.as_view(), name='supervisoresClist'),
-    
+    path('supervisoresCborrar/<int:pk>/', supervisoresCborrar.as_view(), name='supervisoresCborrar'),
+
     path('usuariosClist/', usuariosClist.as_view(), name='usuariosClist'),
+    path('usuariosCborrar/<int:pk>/', usuariosCborrar.as_view(), name='usuariosCborrar'),
 
 ]
 

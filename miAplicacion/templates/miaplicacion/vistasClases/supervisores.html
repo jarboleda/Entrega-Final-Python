@@ -44,7 +44,7 @@
                                         <td>{{ supervisor.estado }}</td>
                                         <td>{{ supervisor.creacion }}</td>
                                         <td>
-                                            <a type="button" class="btn btn-sm btn-secondary" href="{% url 'supervisoresBorrar' supervisor.codigo %}">Eliminar</a>
+                                            <a type="button" class="btn btn-sm btn-secondary" href="{% url 'supervisoresCborrar' supervisor.id %}">Eliminar</a>
                                         </td>                                        
                                     </tr>
                                 {% endfor %}

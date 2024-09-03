@@ -4,6 +4,7 @@ import random
 from datetime import date
 from miAplicacion.models import Grupos, Supervisores, Usuarios
 from miAplicacion.forms import nuevoFormulario
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -12,7 +13,7 @@ def Inicio(request):
 
     return render(request, "miaplicacion/index.html")
 
-
+@login_required
 def gruposList(req):
 # Vista para listar los grupos ingresados
 
@@ -20,6 +21,7 @@ def gruposList(req):
     return render(req, "miaplicacion/grupos.html", {'gruposTodos': gruposTodos})
 
 
+@login_required
 def supervisoresList(req):
 # Vista para listar los supervisores ingresados
 
@@ -27,6 +29,7 @@ def supervisoresList(req):
     return render(req, "miaplicacion/supervisores.html", {'supervisoresTodos': supervisoresTodos})
 
 
+@login_required
 def usuariosList(req):
 # Vista para listar los usuarios ingresados
 
@@ -34,6 +37,7 @@ def usuariosList(req):
     return render(req, "miaplicacion/usuarios.html", {'usuariosTodos': usuariosTodos})
 
 
+@login_required
 def gruposBorrar(req, codigoBorrar):
 # Vista del formulario para borrar un grupo
 
@@ -43,6 +47,7 @@ def gruposBorrar(req, codigoBorrar):
     return redirect('gruposList')
 
 
+@login_required
 def supervisoresBorrar(req, codigoBorrar):
 # Vista del formulario para borrar un grupo
 
@@ -51,6 +56,8 @@ def supervisoresBorrar(req, codigoBorrar):
 
     return redirect('supervisoresList')
 
+
+@login_required
 def usuariosBorrar(req, codigoBorrar):
 # Vista del formulario para borrar un grupo
 
@@ -60,7 +67,7 @@ def usuariosBorrar(req, codigoBorrar):
     return redirect('usuariosList')
 
 
-
+@login_required
 def gruposForm(req):
 # Vista del formulario para agregar nuevos grupos
 
@@ -76,6 +83,7 @@ def gruposForm(req):
     return render(req, 'miaplicacion/gruposForm.html')
 
 
+@login_required
 def supervisoresForm(req):
 # Vista del formulario para agregar nuevos supervisores
 
@@ -91,6 +99,7 @@ def supervisoresForm(req):
     return render(req, 'miaplicacion/supervisoresForm.html')
 
 
+@login_required
 def usuariosForm(req):
 # Vista del formulario para agregar nuevos usuarios
 

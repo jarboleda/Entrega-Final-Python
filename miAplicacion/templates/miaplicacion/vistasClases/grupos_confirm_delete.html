@@ -1,0 +1,6 @@
+<h2>¿Estás seguro que deseas eliminar este grupo?</h2>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar eliminación</button>
+    <a href="{% url 'gruposClist' %}">Cancelar</a>
+</form>

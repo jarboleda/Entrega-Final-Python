@@ -6,28 +6,44 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Scrolling Nav - Start Bootstrap Template</title>
+        <title>{% block titulo %} Inicio {% endblock titulo %}</title>
         <link rel="icon" type="image/x-icon" href="{% static 'miaplicacion/assets/favicon.ico' %}" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'miaplicacion/css/styles.css' %}" rel="stylesheet" />
+        <!-- Bootstrap 5 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     </head>
-    <body id="page-top">
+    <body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
             <div class="container px-4">
-                <a class="navbar-brand" href="#page-top">Proyecto Final</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
+                <a class="navbar-brand" href="#">Proyecto Final</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="../admin/">Admin</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/admin/">Admin</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
-<!--                        <li class="nav-item"><a class="nav-link" href="{% url 'gruposList' %}#grupos">Grupos</a></li>   -->
-                        <li class="nav-item"><a class="nav-link" href="{% url 'gruposClist' %}">Grupos-C</a></li>
-<!--                        <li class="nav-item"><a class="nav-link" href="{% url 'supervisoresList' %}#supervisores">Supervisores</a></li>     -->
-                        <li class="nav-item"><a class="nav-link" href="{% url 'supervisoresClist' %}">Supervisores-C</a></li>
-<!--                        <li class="nav-item"><a class="nav-link" href="{% url 'usuariosList' %}#usuarios">Usuarios</a></li>     -->
-                        <li class="nav-item"><a class="nav-link" href="{% url 'usuariosClist' %}">Usuarios-C</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'inicioSesion' %}">Iniciar Sesión</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Ver Datos
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{% url 'gruposClist' %}">Grupos</a>
+                                <a class="dropdown-item" href="{% url 'supervisoresClist' %}">Supervisores</a>
+                                <a class="dropdown-item" href="{% url 'usuariosClist' %}">Usuarios</a>
+                            </div>
+                        </li>                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Usuario
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{% url 'Login' %}">Iniciar Sesión</a>
+                                <a class="dropdown-item" href="{% url 'Logout' %}">Cerrar Sesión</a>
+                            </div>
+                        </li>
                     </ul>
 
                     <form action="{% url 'buscar' %}" method="GET">
@@ -59,29 +75,31 @@
             <div class="container px-4 text-center">
                 <h1 class="fw-bolder">Bienvenido al Proyecto Final de Javier Arboleda</h1>
                 <p class="lead">Esto es una plantilla funcional de un sistema de administración de usuarios</p>
-                <p class="lead">En ésta página se pueden visualizar datos registrados y tiene formularios para el registro de información de Grupos, Supervisores y Usuarios.</p>
+                <p class="lead">En ésta página se pueden manipular la información de Grupos, Supervisores y Usuarios.</p>
+                <p class="lead">También permite que un usuario inicie sesión y tenga permisos dentro del sistema.</p>
             </div>
         </header>
 
+        {% block main %}
+        {% endblock main %}
+
         {% block bloqueBusqueda %}
-        {% endblock %}
+        {% endblock bloqueBusqueda %}
 
         {% block bloqueGrupos %}
-        {% endblock %}
+        {% endblock bloqueGrupos %}
 
         {% block bloqueSupervisores %}
-        {% endblock %}
+        {% endblock bloqueSupervisores %}
 
         {% block bloqueUsuarios %}
-        {% endblock %}
+        {% endblock bloqueUsuarios %}
 
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2024</p></div>
         </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
         <script src="{% static 'miaplicacion/js/scripts.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>

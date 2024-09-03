@@ -1,0 +1,58 @@
+{% extends 'miAplicacion\index.html' %}
+
+{% load static %}
+
+{% block titulo %} Login {% endblock titulo %}
+
+{% block main %}
+
+<div class="container px-4">
+    <div class="row gx-4 justify-content-center">
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Inicio de Sesión</h3>
+                    <h5 class="fs-5 text-center text-danger">{{ msg_login }}</h5>
+                </div>
+                <form action="" method="post">
+                    <div class="card-body">
+                        
+                        {% csrf_token %}
+
+                        <div class="container text-center">
+
+                            {% for field in form %}
+                            <div class="row">
+                                <div class="col"><label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label></div>
+                                <div class="col">{{ field }}</div>
+                                {% if field.help_text %}
+                                
+                                <small class="form-text text-muted">{{ field.help_text }}</small>
+                                {% endif %}
+                                
+                                {% if field.errors %}
+                                <div class="text-danger">
+                                    {{ field.errors }}
+                                </div>
+                                {% endif %}
+
+                            </div>
+                            {% endfor %}                            
+
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="container text-center">
+                            <div class="row">
+                                <div class="col"><input type="submit" value="Iniciar Sesión" class="btn btn-primary"></div>
+                                <div class="col"><a class="link" href="{% url 'Register' %}">Nuevo Usuario</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}

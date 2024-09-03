@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from miProyecto import views 
 from miAplicacion.views import Inicio
+#from django.shortcuts import redirect
 
 urlpatterns = [
-    path('admin/', admin.site.urls, name='Admin'),
+    path('admin/', admin.site.urls),
     path('', include('miAplicacion.urls')),
+    path('Usuarios/', include('Usuarios.urls')),
 
 ]
 

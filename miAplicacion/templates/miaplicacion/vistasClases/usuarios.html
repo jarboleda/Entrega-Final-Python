@@ -42,7 +42,7 @@
                                         <td>{{ usuario.estado }}</td>
                                         <td>{{ usuario.creacion }}</td>
                                         <td>
-                                            <a type="button" class="btn btn-sm btn-secondary" href="{% url 'usuariosBorrar' usuario.codigo %}">Eliminar</a>
+                                            <a type="button" class="btn btn-sm btn-secondary" href="{% url 'usuariosCborrar' usuario.id %}">Eliminar</a>
                                         </td>                                        
                                     </tr>
                                 {% endfor %}
