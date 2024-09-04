@@ -30,20 +30,36 @@
                                 Ver Datos
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="{% url 'gruposClist' %}">Grupos</a>
-                                <a class="dropdown-item" href="{% url 'supervisoresClist' %}">Supervisores</a>
-                                <a class="dropdown-item" href="{% url 'usuariosClist' %}">Usuarios</a>
+                                <a class="dropdown-item" href="{% url 'gruposClist' %}">Listar Grupos (clases)</a>
+                                <a class="dropdown-item" href="{% url 'supervisoresClist' %}">Listar Supervisores (clases)</a>
+                                <a class="dropdown-item" href="{% url 'usuariosClist' %}">Listar Usuarios (clases)</a>
                             </div>
-                        </li>                        
+                        </li>
+                        {% if request.user.is_authenticated %}
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Usuario
+                                {{ request.user.username }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="{% url 'Login' %}">Iniciar Sesión</a>
+                                <a class="dropdown-item" href="{% url 'Edit' %}">Editar Login</a>
                                 <a class="dropdown-item" href="{% url 'Logout' %}">Cerrar Sesión</a>
                             </div>
                         </li>
+
+                        {% else %}
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Cuenta
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{% url 'Login' %}">Iniciar Sesión</a>
+                                <a class="dropdown-item" href="{% url 'Register' %}">Crear Cuenta</a>
+                            </div>
+                        </li>
+
+                        {% endif %}
                     </ul>
 
                     <form action="{% url 'buscar' %}" method="GET">
@@ -53,9 +69,9 @@
                                 <div class="col-4">
                                     <select class="form-select form-select-sm" aria-label=".form-select-sm" name="tipo" id="tipo">
                                         <option selected>Seleccione..</option>
-                                        <option value="1">Grupos</option>
-                                        <option value="2">Supervisores</option>
-                                        <option value="3">Usuarios</option>
+                                        <option value="1">En Grupos</option>
+                                        <option value="2">En Supervisores</option>
+                                        <option value="3">En Usuarios</option>
                                     </select>
                                 </div>
                                 <div class="col-3">
@@ -75,7 +91,7 @@
             <div class="container px-4 text-center">
                 <h1 class="fw-bolder">Bienvenido al Proyecto Final de Javier Arboleda</h1>
                 <p class="lead">Esto es una plantilla funcional de un sistema de administración de usuarios</p>
-                <p class="lead">En ésta página se pueden manipular la información de Grupos, Supervisores y Usuarios.</p>
+                <p class="lead">En ésta página se pueden manipular la información de Listar Grupos, Supervisores y Usuarios.</p>
                 <p class="lead">También permite que un usuario inicie sesión y tenga permisos dentro del sistema.</p>
             </div>
         </header>

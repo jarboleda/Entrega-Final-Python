@@ -1,7 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserForm
+
 
 def login_request(request):
 
@@ -25,6 +31,7 @@ def login_request(request):
     form = AuthenticationForm()
     return render(request, "Usuarios/login.html", {"form": form, "msg_login": msg_login})
 
+
 def register(request):
 
     msg_register = ""
@@ -41,3 +48,22 @@ def register(request):
 
     form = UserRegisterForm()     
     return render(request,"Usuarios/registro.html" ,  {"form":form, "msg_register": msg_register})
+
+
+@login_required
+def edit(request):
+
+    user = request.user
+    
+    if request.method == 'POST':
+        # Se crea un formulario utilizando la instancia del usuario actual
+        form = UserForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse_lazy('inicio'))
+    
+    else:
+        # Si la solicitud es GET, se rellena el formulario con los datos del usuario
+        form = UserForm(instance=user)
+    
+    return render(request, 'Usuarios/edit.html', {'form': form})

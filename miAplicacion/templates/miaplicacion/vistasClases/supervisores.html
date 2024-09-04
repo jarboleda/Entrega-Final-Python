@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supervisores</title>
+    <title>Supervisores (clases)</title>
 </head>
 <body>
     
@@ -30,7 +30,7 @@
                                     <th scope="col">Email</th>
                                     <th scope="col">Estado</th>
                                     <th scope="col">Creacion</th>
-                                    <th scope="col">Acción</th>
+                                    <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,7 +44,8 @@
                                         <td>{{ supervisor.estado }}</td>
                                         <td>{{ supervisor.creacion }}</td>
                                         <td>
-                                            <a type="button" class="btn btn-sm btn-secondary" href="{% url 'supervisoresCborrar' supervisor.id %}">Eliminar</a>
+                                            <a type="button" class="btn btn-sm btn-success" href="{% url 'editarSupervisores' supervisor.id %}">Editar</a>
+                                            <a type="button" class="btn btn-sm btn-danger" href="{% url 'supervisoresCborrar' supervisor.id %}">Eliminar</a>
                                         </td>                                        
                                     </tr>
                                 {% endfor %}

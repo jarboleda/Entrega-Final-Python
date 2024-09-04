@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Grupos</title>
+</head>
+<body>
+
+    {% extends "miAplicacion/index.html" %}
+    {% load static %}
+    {% block bloqueGrupos %}
+
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="text-center">Editar un Grupo</h3>
+                        </div>
+                        <form action="" method="post">
+                            <div class="card-body">
+                                
+                                {% csrf_token %}
+        
+                                <div class="container">
+        
+                                    {% for field in form %}
+                                    <div class="row">
+                                        <div class="col"><label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label></div>
+                                        <div class="col">{{ field }}</div>
+                                        
+                                        {% if field.errors %}
+                                        <div class="text-danger">
+                                            {{ field.errors }}
+                                        </div>
+                                        {% endif %}
+        
+                                    </div>
+                                    {% endfor %}                            
+        
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="container text-center">
+                                    <div class="row">
+                                        <div class="col"><input type="submit" value="Guardar Cambios" class="btn btn-primary"></div>
+                                        <div class="col"><a class="link" href="{% url 'gruposClist' %}">Volver al listado</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    {% endblock %}
+
+</body>
+</html>

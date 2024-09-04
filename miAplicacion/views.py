@@ -3,7 +3,6 @@ from django.http import HttpResponse
 import random
 from datetime import date
 from miAplicacion.models import Grupos, Supervisores, Usuarios
-from miAplicacion.forms import nuevoFormulario
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -78,7 +77,7 @@ def gruposForm(req):
         grupo = Grupos(codigo=cod, nombre=req.POST['nombre'], idioma=req.POST['idioma'], estado=sta, creacion=cre)
         grupo.save()
 
-        return redirect('gruposList')
+        return redirect('gruposClist')
 
     return render(req, 'miaplicacion/gruposForm.html')
 
@@ -94,7 +93,7 @@ def supervisoresForm(req):
         grupo = Supervisores(codigo=cod, nombres=req.POST['nombre'], idioma=req.POST['idioma'], email=req.POST['email'], estado=sta, creacion=cre)
         grupo.save()
 
-        return redirect('supervisoresList')
+        return redirect('supervisoresClist')
     
     return render(req, 'miaplicacion/supervisoresForm.html')
 
@@ -110,7 +109,7 @@ def usuariosForm(req):
         grupo = Usuarios(codigo=cod, nombres=req.POST['nombre'], idioma=req.POST['idioma'], estado=sta, creacion=cre)
         grupo.save()
 
-        return redirect('usuariosList')
+        return redirect('usuariosClist')
     
     return render(req, 'miaplicacion/usuariosForm.html')
 
@@ -137,26 +136,3 @@ def buscar(req):
         return render(req, 'miaplicacion/index.html')
 
 
-def nuevoForm(req):
-
-    if req.method == 'POST':
-
-        miFormulario = nuevoFormulario(req.POST)
-        # print(miFormulario)
-
-        if miFormulario.is_valid:
-            informacion = miFormulario.cleaned_data
-
-            cod = str(random.randint(10000,99999))
-            sta = "A"
-            cre = date.today()
-
-            grupo = Usuarios(codigo=cod, nombres=informacion['nombre'], idioma=informacion['idioma'], estado=sta, creacion=cre)
-            grupo.save()
-
-            return render(req, 'miaplicacion/index.html')
-        
-    else:
-        miFormulario = nuevoFormulario()
-
-    return render(req, 'miaplicacion/nuevoFormulario.html', {"miFormulario": miFormulario})

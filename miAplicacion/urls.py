@@ -23,12 +23,15 @@ urlpatterns = [
 urls_vistas_clases = [
     path('gruposClist/', gruposClist.as_view(), name='gruposClist'),
     path('gruposCborrar/<int:pk>/', gruposCborrar.as_view(), name='gruposCborrar'),
+    path('editarGrupos/<int:pk>/', gruposEditar.as_view(), name='editarGrupos'),
 
     path('supervisoresClist/', supervisoresClist.as_view(), name='supervisoresClist'),
     path('supervisoresCborrar/<int:pk>/', supervisoresCborrar.as_view(), name='supervisoresCborrar'),
+    path('editarSupervisores/<int:pk>/', supervisoresEditar.as_view(), name='editarSupervisores'),
 
     path('usuariosClist/', usuariosClist.as_view(), name='usuariosClist'),
     path('usuariosCborrar/<int:pk>/', usuariosCborrar.as_view(), name='usuariosCborrar'),
+    path('editarUsuarios/<int:pk>/', usuariosEditar.as_view(), name='editarUsuarios'),
 
 ]
 

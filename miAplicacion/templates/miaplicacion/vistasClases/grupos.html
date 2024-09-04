@@ -29,7 +29,7 @@
                                     <th scope="col">Idioma</th>
                                     <th scope="col">Estado</th>
                                     <th scope="col">Creacion</th>
-                                    <th scope="col">Acción</th>
+                                    <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,7 +42,8 @@
                                         <td>{{ grupo.estado }}</td>
                                         <td>{{ grupo.creacion }}</td>
                                         <td>
-                                            <a type="button" class="btn btn-sm btn-secondary" href="{% url 'gruposCborrar' grupo.id %}">Eliminar</a>
+                                            <a type="button" class="btn btn-sm btn-success" href="{% url 'editarGrupos' grupo.id %}">Editar</a>
+                                            <a type="button" class="btn btn-sm btn-danger" href="{% url 'gruposCborrar' grupo.id %}">Eliminar</a>
                                         </td>
                                     </tr>
                                 {% endfor %}

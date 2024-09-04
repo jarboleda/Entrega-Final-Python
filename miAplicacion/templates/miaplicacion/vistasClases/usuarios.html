@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios</title>
+    <title>Usuarios (clases)</title>
 </head>
 <body>
     
@@ -29,7 +29,7 @@
                                     <th scope="col">Idioma</th>
                                     <th scope="col">Estado</th>
                                     <th scope="col">Creacion</th>
-                                    <th scope="col">Acción</th>
+                                    <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,7 +42,8 @@
                                         <td>{{ usuario.estado }}</td>
                                         <td>{{ usuario.creacion }}</td>
                                         <td>
-                                            <a type="button" class="btn btn-sm btn-secondary" href="{% url 'usuariosCborrar' usuario.id %}">Eliminar</a>
+                                            <a type="button" class="btn btn-sm btn-success" href="{% url 'editarUsuarios' usuario.id %}">Editar</a>
+                                            <a type="button" class="btn btn-sm btn-danger" href="{% url 'usuariosCborrar' usuario.id %}">Eliminar</a>
                                         </td>                                        
                                     </tr>
                                 {% endfor %}
