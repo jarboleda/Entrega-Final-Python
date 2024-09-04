@@ -7,7 +7,9 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from .forms import UserRegisterForm, UserForm
-
+from Usuarios.models import Imagen
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView
 
 def login_request(request):
 
@@ -53,17 +55,34 @@ def register(request):
 @login_required
 def edit(request):
 
-    user = request.user
+    usuario = request.user
     
     if request.method == 'POST':
         # Se crea un formulario utilizando la instancia del usuario actual
-        form = UserForm(request.POST, instance=user)
+        form = UserForm(request.POST, request.FILES, instance=usuario)
+
         if form.is_valid():
+            if form.cleaned_data.get('imagen'):
+                if Imagen.objects.filter(user = usuario).exists():
+                    usuario.imagen.imagen = form.cleaned_data.get('imagen')
+                    usuario.imagen.save()
+
+                else:
+                    avatar = Imagen(user=usuario, imagen = form.cleaned_data.get('imagen'))
+                    avatar.save()
+
             form.save()
             return redirect(reverse_lazy('inicio'))
     
     else:
         # Si la solicitud es GET, se rellena el formulario con los datos del usuario
-        form = UserForm(instance=user)
+        form = UserForm(instance = usuario)
     
-    return render(request, 'Usuarios/edit.html', {'form': form})
+    return render(request, 'Usuarios/edit.html', {'form': form, 'usuario': usuario})
+
+
+class cambiarPass(LoginRequiredMixin, PasswordChangeView):
+    # mainaadmin / Password$1
+    
+    template_name = 'Usuarios/password.html'
+    success_url = reverse_lazy('Edit')

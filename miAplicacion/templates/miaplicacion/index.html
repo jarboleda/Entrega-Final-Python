@@ -37,6 +37,11 @@
                         </li>
                         {% if request.user.is_authenticated %}
 
+                        {% if request.user.imagen and request.user.imagen.imagen %}
+                            <img src="{{ request.user.imagen.imagen.url }}" alt="" style="height: 50px; width: 50px;">
+                        {% else %}
+                            <img src="{% static 'miaplicacion/images/default.jpg' %}" alt="" style="height: 50px; width: 50px;">
+                        {% endif %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ request.user.username }}
