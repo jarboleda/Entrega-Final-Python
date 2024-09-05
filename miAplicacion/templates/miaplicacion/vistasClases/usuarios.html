@@ -41,10 +41,19 @@
                                         <td>{{ usuario.idioma }}</td>
                                         <td>{{ usuario.estado }}</td>
                                         <td>{{ usuario.creacion }}</td>
+
+                                        {% if request.user.is_authenticated %}
+
                                         <td>
                                             <a type="button" class="btn btn-sm btn-success" href="{% url 'editarUsuarios' usuario.id %}">Editar</a>
                                             <a type="button" class="btn btn-sm btn-danger" href="{% url 'usuariosCborrar' usuario.id %}">Eliminar</a>
                                         </td>                                        
+
+                                        {% else %}
+
+                                        <td></td>
+
+                                        {% endif %}
                                     </tr>
                                 {% endfor %}
                             </tbody>

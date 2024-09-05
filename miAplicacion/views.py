@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import random
-from datetime import date
+from datetime import date, datetime
 from miAplicacion.models import Grupos, Supervisores, Usuarios
 from django.contrib.auth.decorators import login_required
 
@@ -10,65 +10,19 @@ from django.contrib.auth.decorators import login_required
 def Inicio(request):
 # Vista de inicio
 
-    return render(request, "miaplicacion/index.html")
+    hoy = datetime.now().strftime('%d/%m/%Y, %H:%M:%S')
+    return render(request, "miaplicacion/index.html", {'dia_hora': hoy})
 
-@login_required
-def gruposList(req):
-# Vista para listar los grupos ingresados
+def about(request):
 
-    gruposTodos = Grupos.objects.all()
-    return render(req, "miaplicacion/grupos.html", {'gruposTodos': gruposTodos})
-
-
-@login_required
-def supervisoresList(req):
-# Vista para listar los supervisores ingresados
-
-    supervisoresTodos = Supervisores.objects.all()
-    return render(req, "miaplicacion/supervisores.html", {'supervisoresTodos': supervisoresTodos})
-
-
-@login_required
-def usuariosList(req):
-# Vista para listar los usuarios ingresados
-
-    usuariosTodos = Usuarios.objects.all()
-    return render(req, "miaplicacion/usuarios.html", {'usuariosTodos': usuariosTodos})
-
-
-@login_required
-def gruposBorrar(req, codigoBorrar):
-# Vista del formulario para borrar un grupo
-
-    grupo = Grupos.objects.get(codigo = codigoBorrar)
-    grupo.delete()
-
-    return redirect('gruposList')
-
-
-@login_required
-def supervisoresBorrar(req, codigoBorrar):
-# Vista del formulario para borrar un grupo
-
-    grupo = Supervisores.objects.get(codigo = codigoBorrar)
-    grupo.delete()
-
-    return redirect('supervisoresList')
-
-
-@login_required
-def usuariosBorrar(req, codigoBorrar):
-# Vista del formulario para borrar un grupo
-
-    grupo = Usuarios.objects.get(codigo = codigoBorrar)
-    grupo.delete()
-
-    return redirect('usuariosList')
-
+    hoy = datetime.now().strftime('%d/%m/%Y, %H:%M:%S')
+    return render(request, 'miaplicacion/about.html', {'dia_hora': hoy})
 
 @login_required
 def gruposForm(req):
 # Vista del formulario para agregar nuevos grupos
+
+    hoy = datetime.now().strftime('%d/%m/%Y, %H:%M:%S')
 
     if req.method == 'POST':
         cod = str(random.randint(10000,99999))
@@ -79,12 +33,14 @@ def gruposForm(req):
 
         return redirect('gruposClist')
 
-    return render(req, 'miaplicacion/gruposForm.html')
+    return render(req, 'miaplicacion/gruposForm.html', {'dia_hora': hoy})
 
 
 @login_required
 def supervisoresForm(req):
 # Vista del formulario para agregar nuevos supervisores
+
+    hoy = datetime.now().strftime('%d/%m/%Y, %H:%M:%S')
 
     if req.method == 'POST':
         cod = str(random.randint(10000,99999))
@@ -95,12 +51,14 @@ def supervisoresForm(req):
 
         return redirect('supervisoresClist')
     
-    return render(req, 'miaplicacion/supervisoresForm.html')
+    return render(req, 'miaplicacion/supervisoresForm.html', {'dia_hora': hoy})
 
 
 @login_required
 def usuariosForm(req):
 # Vista del formulario para agregar nuevos usuarios
+
+    hoy = datetime.now().strftime('%d/%m/%Y, %H:%M:%S')
 
     if req.method == 'POST':
         cod = str(random.randint(10000,99999))
@@ -111,7 +69,7 @@ def usuariosForm(req):
 
         return redirect('usuariosClist')
     
-    return render(req, 'miaplicacion/usuariosForm.html')
+    return render(req, 'miaplicacion/usuariosForm.html', {'dia_hora': hoy})
 
 
 def buscar(req):
@@ -130,9 +88,10 @@ def buscar(req):
 
         datos = obj.objects.filter(codigo__icontains=cod)
 
-        return render(req, 'miaplicacion/resultados.html', {'datos': datos, 'codigo': cod, 'tipo': tipo})
+        hoy = datetime.now().strftime('%d/%m/%Y, %H:%M:%S')
+        return render(req, 'miaplicacion/resultados.html', {'datos': datos, 'codigo': cod, 'tipo': tipo, 'dia_hora': hoy})
   
     else:
-        return render(req, 'miaplicacion/index.html')
-
+        # return render(req, 'miaplicacion/index.html')
+        return redirect('inicio')
 

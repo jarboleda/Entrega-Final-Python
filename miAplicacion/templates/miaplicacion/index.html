@@ -35,6 +35,32 @@
                                 <a class="dropdown-item" href="{% url 'usuariosClist' %}">Listar Usuarios (clases)</a>
                             </div>
                         </li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+
+                        <form action="{% url 'buscar' %}" method="GET">
+                            {% csrf_token %}
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-4">
+                                        <select class="form-select form-select-sm" aria-label=".form-select-sm" name="tipo" id="tipo">
+                                            <option selected>Seleccione..</option>
+                                            <option value="1">En Grupos</option>
+                                            <option value="2">En Supervisores</option>
+                                            <option value="3">En Usuarios</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3">
+                                        <input class="form-control form-control-sm" type="search" placeholder="Buscar.." name="codigo" id="codigo">
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="submit" class="btn btn-sm btn-primary" value="Buscar Resultados">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <li>-</li>
+
                         {% if request.user.is_authenticated %}
 
                         {% if request.user.imagen and request.user.imagen.imagen %}
@@ -42,6 +68,7 @@
                         {% else %}
                             <img src="{% static 'miaplicacion/images/default.jpg' %}" alt="" style="height: 50px; width: 50px;">
                         {% endif %}
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ request.user.username }}
@@ -67,39 +94,22 @@
                         {% endif %}
                     </ul>
 
-                    <form action="{% url 'buscar' %}" method="GET">
-                        {% csrf_token %}
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-4">
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm" name="tipo" id="tipo">
-                                        <option selected>Seleccione..</option>
-                                        <option value="1">En Grupos</option>
-                                        <option value="2">En Supervisores</option>
-                                        <option value="3">En Usuarios</option>
-                                    </select>
-                                </div>
-                                <div class="col-3">
-                                    <input class="form-control form-control-sm" type="search" placeholder="Buscar.." name="codigo" id="codigo">
-                                </div>
-                                <div class="col-2">
-                                    <input type="submit" class="btn btn-sm btn-primary" value="Buscar Resultados">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </nav>
         <!-- Header-->
+         {% block about %}
         <header class="bg-primary bg-gradient text-white" id="about">
             <div class="container px-4 text-center">
                 <h1 class="fw-bolder">Bienvenido al Proyecto Final de Javier Arboleda</h1>
-                <p class="lead">Esto es una plantilla funcional de un sistema de administración de usuarios</p>
-                <p class="lead">En ésta página se pueden manipular la información de Listar Grupos, Supervisores y Usuarios.</p>
-                <p class="lead">También permite que un usuario inicie sesión y tenga permisos dentro del sistema.</p>
+                <p class="lead">Esto es una plantilla funcional de un sistema de administración de datos.</p>
+                <p class="lead">En ésta página se pueden manipular la información de Grupos, Supervisores y Usuarios.</p>
+                <p class="lead">Puedes registrar usuarios, iniciar sesión y ganar acceso a la manipulación de datos.</p>
+                <p class="lead">También puedes asignarle un 'Avatar' a los usuarios de sesión.</p>
             </div>
         </header>
+        {% endblock about %}
+        <div class="px-4 text-center bg-primary text-white fs-4">Hoy es : {{ dia_hora }}</div>
 
         {% block main %}
         {% endblock main %}

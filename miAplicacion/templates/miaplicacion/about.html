@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends "miAplicacion/index.html" %}
+    {% load static %}
+    {% block about %}
+
+    <header class="bg-primary bg-gradient text-white" id="about">
+        <div class="container px-4 text-center">
+            <h1 class="fw-bolder">Éste soy yo, Javier Arboleda.... muy básicamente</h1>
+            <p class="lead">Desarrollador de software con más de 30 años de experiencia en desarrollo de software de escritorio.</p>
+            <p class="lead">Aprendí PHP, Javascript, HTML y CSS casi a la fuerza pero me gustó y me metí de lleno al desarrollo de Backend.</p>
+            <p class="lead">No tengo gusto creativo así que el Frontend no es mi fuerte, para éso está Bootstrap y los diseñadores.</p>
+            <p class="lead">Mi número para contratos es ...... nah, sólo era broma.</p>
+        </div>
+    </header>
+    
+    {% endblock about%}
+</body>
+</html>

@@ -5,13 +5,22 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from .forms import UserRegisterForm, UserForm
 from Usuarios.models import Imagen
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
+from datetime import datetime
+
+def custom_logout(request):
+
+    logout(request)
+    return redirect('inicio')
+
 
 def login_request(request):
+
+    hoy = datetime.now().strftime('%d/%m/%Y, %H:%M:%S')
 
     msg_login = ""
     if request.method == 'POST':
@@ -26,15 +35,18 @@ def login_request(request):
 
             if user is not None:
                 login(request, user)
-                return render(request, "miAplicacion/index.html")
+                return redirect('inicio')
+                # return render(request, "miAplicacion/index.html")
 
         msg_login = "Usuario o contraseña incorrectos"
 
     form = AuthenticationForm()
-    return render(request, "Usuarios/login.html", {"form": form, "msg_login": msg_login})
+    return render(request, "Usuarios/login.html", {"form": form, "msg_login": msg_login, 'dia_hora': hoy})
 
 
 def register(request):
+
+    hoy = datetime.now().strftime('%d/%m/%Y, %H:%M:%S')
 
     msg_register = ""
     if request.method == 'POST':
@@ -44,16 +56,18 @@ def register(request):
             # Si los datos ingresados en el form son válidos, con form.save()
             # creamos un nuevo user usando esos datos
             form.save()
-            return render(request,"miAplicacion/index.html")
+            return redirect('inicio')
         
         msg_register = "Error en los datos ingresados"
 
     form = UserRegisterForm()     
-    return render(request,"Usuarios/registro.html" ,  {"form":form, "msg_register": msg_register})
+    return render(request,"Usuarios/registro.html" ,  {"form":form, "msg_register": msg_register, 'dia_hora': hoy})
 
 
 @login_required
 def edit(request):
+
+    hoy = datetime.now().strftime('%d/%m/%Y, %H:%M:%S')
 
     usuario = request.user
     
@@ -78,7 +92,7 @@ def edit(request):
         # Si la solicitud es GET, se rellena el formulario con los datos del usuario
         form = UserForm(instance = usuario)
     
-    return render(request, 'Usuarios/edit.html', {'form': form, 'usuario': usuario})
+    return render(request, 'Usuarios/edit.html', {'form': form, 'usuario': usuario, 'dia_hora': hoy})
 
 
 class cambiarPass(LoginRequiredMixin, PasswordChangeView):
@@ -86,3 +100,9 @@ class cambiarPass(LoginRequiredMixin, PasswordChangeView):
     
     template_name = 'Usuarios/password.html'
     success_url = reverse_lazy('Edit')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        hoy = datetime.now().strftime('%d/%m/%Y, %H:%M:%S')
+        context['dia_hora'] = hoy
+        return context
