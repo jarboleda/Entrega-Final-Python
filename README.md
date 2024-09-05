@@ -1,6 +1,6 @@
 # Trabajo Final curso de Python - Javier Arboleda
 
-- 1.- Para ingresar a la aplicación debe colocar http://localhost:8000/miAplicacion/
+- 1.- Para ingresar a la aplicación debe colocar http://localhost:8000/
 - 2.- Los enlaces de Grupo, Supervisor y Usuarios están activos en un Dropdown de 'Ver Datos'.
 - 3.- Grupos y Supervisores requieren inicio de sesión, Usuarios permite visualizar los datos pero no editarlos hasta iniciar sesión.
 - 4.- Al ingresar a las Listas se pueden crear nuevos datos, así como editar y/o eliminar los ya existentes.
