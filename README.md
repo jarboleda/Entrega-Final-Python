@@ -1,4 +1,4 @@
-# Tercera pre-entrega-Arboleda
+# Trabajo Final curso de Python - Javier Arboleda
 
 - 1.- Para ingresar a la aplicación debe colocar http://localhost:8000/miAplicacion/
 - 2.- Los enlaces de Grupo, Supervisor y Usuarios están activos en un Dropdown de 'Ver Datos'.
@@ -24,4 +24,4 @@ https://docs.google.com/spreadsheets/d/1xu6WJm48K0gdvmiszbJAJ0WfsfqvXXPV/edit?us
 Usuario Admin / Password
 - mainadmin	/	Password$1
 
-
+Desarrollado por : Javier Arboleda.
